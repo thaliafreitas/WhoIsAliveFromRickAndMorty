@@ -141,7 +141,7 @@
 				5778DDEA236249EF00674A57 /* Sources */,
 				5778DDEB236249EF00674A57 /* Frameworks */,
 				5778DDEC236249EF00674A57 /* Resources */,
-				5778DE2423624B4200674A57 /* ShellScript */,
+				5778DE2523632E3500674A57 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -259,7 +259,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5778DE2423624B4200674A57 /* ShellScript */ = {
+		5778DE2523632E3500674A57 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
