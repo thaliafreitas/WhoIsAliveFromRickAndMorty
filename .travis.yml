@@ -1,5 +1,7 @@
 language: objective-c
 osx_image: xcode11.1
+script:
+- set -o pipefail
 xcode_project: WhoIsAliveFromRickAndMorty.xcodeproj
 xcode_scheme: WhoIsAliveFromRickAndMorty
 xcode_destination: platform=iOS Simulator,OS=12.2,name=iPhone X
