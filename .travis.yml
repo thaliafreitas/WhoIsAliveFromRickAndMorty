@@ -4,3 +4,6 @@ osx_image: xcode11.1
 xcode_project: WhoIsAliveFromRickAndMorty.xcodeproj
 xcode_scheme: WhoIsAliveFromRickAndMorty
 xcode_destination: platform=iOS Simulator,OS=13.1,name=iPhone 11
+notification:
+    email: false
+    slack: academy.ifce:xoxp-310758860868-311971656626-796608840626-322f36ad098f917bc13be1b792ae2a65
