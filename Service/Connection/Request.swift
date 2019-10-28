@@ -38,6 +38,7 @@ class Request<T: EndPointType>: NetworkProtocol {
             })
         self.task?.resume()
         }
+
     /**Call this function when you want to cancel your task call*/
     func cancel() {
         self.task?.cancel()

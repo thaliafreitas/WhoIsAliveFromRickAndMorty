@@ -13,6 +13,9 @@
 		573259B423636A0300AECB85 /* NetworkEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573259B323636A0300AECB85 /* NetworkEndPoint.swift */; };
 		573259B62364944800AECB85 /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573259B52364944800AECB85 /* NetworkProtocol.swift */; };
 		573259B82364995A00AECB85 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573259B72364995A00AECB85 /* Request.swift */; };
+		573259BA2364CE4500AECB85 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573259B92364CE4500AECB85 /* HomeViewController.swift */; };
+		573259C02364F4F500AECB85 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573259BF2364F4F500AECB85 /* CustomCell.swift */; };
+		573259C423668A1A00AECB85 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573259C323668A1A00AECB85 /* DataStore.swift */; };
 		5778DDF2236249EF00674A57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778DDF1236249EF00674A57 /* AppDelegate.swift */; };
 		5778DDF4236249EF00674A57 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778DDF3236249EF00674A57 /* SceneDelegate.swift */; };
 		5778DDF6236249EF00674A57 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778DDF5236249EF00674A57 /* ViewController.swift */; };
@@ -48,6 +51,9 @@
 		573259B323636A0300AECB85 /* NetworkEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEndPoint.swift; sourceTree = "<group>"; };
 		573259B52364944800AECB85 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
 		573259B72364995A00AECB85 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		573259B92364CE4500AECB85 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		573259BF2364F4F500AECB85 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		573259C323668A1A00AECB85 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		5778DDEE236249EF00674A57 /* WhoIsAliveFromRickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhoIsAliveFromRickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5778DDF1236249EF00674A57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5778DDF3236249EF00674A57 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +152,9 @@
 				5778DDF3236249EF00674A57 /* SceneDelegate.swift */,
 				5778DDF5236249EF00674A57 /* ViewController.swift */,
 				5778DDF7236249EF00674A57 /* Main.storyboard */,
+				573259B92364CE4500AECB85 /* HomeViewController.swift */,
+				573259C323668A1A00AECB85 /* DataStore.swift */,
+				573259BF2364F4F500AECB85 /* CustomCell.swift */,
 				5778DDFD236249F200674A57 /* Assets.xcassets */,
 				5778DDFF236249F200674A57 /* LaunchScreen.storyboard */,
 				5778DE02236249F200674A57 /* Info.plist */,
@@ -333,6 +342,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				573259C423668A1A00AECB85 /* DataStore.swift in Sources */,
+				573259BA2364CE4500AECB85 /* HomeViewController.swift in Sources */,
 				5778DDF6236249EF00674A57 /* ViewController.swift in Sources */,
 				573259AE236363DB00AECB85 /* RickAndMorty.swift in Sources */,
 				5778DDFC236249EF00674A57 /* WhoIsAliveFromRickAndMorty.xcdatamodeld in Sources */,
@@ -343,6 +354,7 @@
 				573259B82364995A00AECB85 /* Request.swift in Sources */,
 				5778DDF4236249EF00674A57 /* SceneDelegate.swift in Sources */,
 				573259B22363694400AECB85 /* RickAndMortyAPIEndPoints.swift in Sources */,
+				573259C02364F4F500AECB85 /* CustomCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
