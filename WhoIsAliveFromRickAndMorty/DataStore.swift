@@ -10,18 +10,17 @@ import UIKit
 
 class DataStore {
     static let sharedInstance = DataStore()
-    var characterDTO : [Result] = []
-    
+    var characterDTO: [Result] = []
+
     func saveCharacter (completion: @escaping ([Result]) -> Void) {
 
         let request = Request<RickAndMortyAPI>()
         request.perform(RickAndMortyAPI.characters) { (character: Result?, error: Errors?) -> (Void) in
             guard let characters = character else { return }
-
             completion(self.characterDTO)
             print(characters)
         }
+
     }
-    
 
 }

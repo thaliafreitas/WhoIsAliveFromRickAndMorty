@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
 
     fileprivate let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         let collectionViewCell = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionViewCell.translatesAutoresizingMaskIntoConstraints = false
         collectionViewCell.register(CustomCell.self, forCellWithReuseIdentifier: "cell")
@@ -23,29 +23,24 @@ class HomeViewController: UIViewController {
     }()
 
     func setupConstraints() {
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: view.frame.height / 2).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: view.frame.height).isActive = true
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setupConstraints()
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
         setupConstraints()
-        DataStore().saveCharacter { (cha) in
-            self.store.characterDTO = cha
-            self.collectionView.reloadData()
-        }
     }
 }
 
-extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.store.characterDTO.count
+        return 15
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -54,6 +49,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+        let padding: CGFloat = 1
+        let collectionViewSize = collectionView.frame.size.width - padding
+        return CGSize(width: collectionViewSize / 2 - 8, height: collectionViewSize / 2)
+
     }
 }
