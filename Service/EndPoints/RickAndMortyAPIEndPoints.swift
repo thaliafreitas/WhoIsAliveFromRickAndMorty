@@ -17,7 +17,7 @@ enum RickAndMortyAPI {
 extension RickAndMortyAPI: EndPointType {
     var url: URL {
         guard let url = URL(string: self.path) else
-         { return URL(fileURLWithPath: "")}
+        { return URL(fileURLWithPath: "")}
         return url
     }
     var path: String {

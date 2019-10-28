@@ -13,9 +13,12 @@ import Foundation
 class Request<T: EndPointType>: NetworkProtocol {
     // MARK: Varibles
       private var task: URLSessionTask?
+
     // MARK: Functions
     /** Perform contains implemention body of request, but it must to have Api keys and required IDs*/
+
     func perform<U: Decodable>(_ endPoint: T, completion: @escaping (U?, Errors?) -> (Void)) {
+
         let session = URLSession.shared
         var request = URLRequest(url: endPoint.url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 30.0)
         request.httpMethod = "GET"
@@ -38,6 +41,7 @@ class Request<T: EndPointType>: NetworkProtocol {
             })
         self.task?.resume()
         }
+
     /**Call this function when you want to cancel your task call*/
     func cancel() {
         self.task?.cancel()
