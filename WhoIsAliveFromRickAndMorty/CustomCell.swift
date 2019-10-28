@@ -36,11 +36,10 @@ class CustomCell: UICollectionViewCell {
 
     func setupConstraints() {
         imageCell.heightAnchor.constraint(equalToConstant: contentView.frame.height).isActive = true
-        imageCell.widthAnchor.constraint(equalToConstant: contentView.frame.width).isActive = true
         imageCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
-        imageCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 8).isActive = true
+        imageCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
         characterName.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        characterName.widthAnchor.constraint(equalToConstant: contentView.frame.width).isActive = true
+        characterName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
         characterName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
         characterName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     }
