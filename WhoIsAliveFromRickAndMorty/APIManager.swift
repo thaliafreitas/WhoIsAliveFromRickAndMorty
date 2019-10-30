@@ -1,5 +1,5 @@
 //
-//  DataStore.swift
+//  APIManager.swift
 //  WhoIsAliveFromRickAndMorty
 //
 //  Created by Thalia Freitas on 27/10/19.
@@ -8,17 +8,21 @@
 
 import UIKit
 
-class DataStore {
-    static let sharedInstance = DataStore()
+/** Class to manipulate  API data */
+
+class APIManager {
+    static let sharedInstance = APIManager()
+
     var characterDTO: [Result] = []
 
-    func saveCharacter (completion: @escaping ([Result]) -> Void) {
+    func saveCharacter (completion: @escaping ([Character?]) -> Void) {
 
         let request = Request<RickAndMortyAPI>()
-        request.perform(RickAndMortyAPI.characters) { (character: Result?, error: Errors?) -> (Void) in
-            guard let characters = character else { return }
-            completion(self.characterDTO)
+        request.perform(RickAndMortyAPI.characters) { (character: Welcome?, error: Errors?) -> (Void) in
+            guard let characters = character else
+{ return }
             print(characters)
+
         }
 
     }
