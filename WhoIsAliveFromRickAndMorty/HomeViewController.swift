@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 
 class HomeViewController: UIViewController {
-    let store = DataStore.sharedInstance
+    let store = APIManager.sharedInstance
 
     fileprivate let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -35,6 +35,11 @@ class HomeViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         setupConstraints()
+
+        }
+
+    func showDetailsCollectionView(of Character: UIImage) {
+
     }
 }
 
@@ -44,14 +49,19 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? CustomCell else {fatalError("Misconfigured cell type")}
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? CustomCell else { return UICollectionViewCell()}
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let padding: CGFloat = 1
-        let collectionViewSize = collectionView.frame.size.width - padding
-        return CGSize(width: collectionViewSize / 2 - 8, height: collectionViewSize / 2)
+        let collectionViewSize = collectionView.frame.size.width
+        return CGSize(width: collectionViewSize, height: collectionViewSize / 2)
+
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CustomCell else { return }
 
     }
 }
+
