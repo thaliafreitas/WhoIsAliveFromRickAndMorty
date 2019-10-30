@@ -36,8 +36,7 @@ class CustomCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        setupConstraints()
+        setupView()
     }
 
     required init?(coder aDecoder: NSCoder) {

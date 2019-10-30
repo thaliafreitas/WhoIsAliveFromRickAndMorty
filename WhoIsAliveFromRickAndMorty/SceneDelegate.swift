@@ -17,7 +17,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         self.window = UIWindow(frame: UIScreen.main.bounds)
         if let window = self.window {
-            window.rootViewController = HomeViewController()
+            let tabBar = UITabBarController()
+            let homeViewController = HomeViewController()
+            let homeNavigationViewController = UINavigationController(rootViewController: homeViewController)
+            tabBar.viewControllers = [homeNavigationViewController]
+            homeNavigationViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 2)
+            window.rootViewController = tabBar
             window.makeKeyAndVisible()
                 }
         window?.windowScene = windowScene
