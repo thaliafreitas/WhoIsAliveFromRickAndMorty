@@ -17,7 +17,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         self.window = UIWindow(frame: UIScreen.main.bounds)
         if let window = self.window {
-            window.rootViewController = HomeViewController()
+            let tabBar = UITabBarController()
+            let homeViewController = HomeViewController()
+            let favoriteViewController = FavoriteViewController()
+            let homeNavigationViewController = UINavigationController(rootViewController: homeViewController)
+            let favoriteNavigationViewController = UINavigationController(rootViewController: favoriteViewController)
+            tabBar.viewControllers = [homeNavigationViewController, favoriteViewController]
+            homeNavigationViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 2)
+            window.rootViewController = tabBar
             window.makeKeyAndVisible()
                 }
         window?.windowScene = windowScene
@@ -43,12 +50,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
-
-        // Save changes in the application's managed object context when the application transitions to the background.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        CoreDataManager.sharedInstance.saveContext()
     }
 
 }

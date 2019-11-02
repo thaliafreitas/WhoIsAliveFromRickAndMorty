@@ -15,13 +15,22 @@ enum RickAndMortyAPI {
 }
 
 extension RickAndMortyAPI: EndPointType {
-    var url: URL {
-        guard let url = URL(string: self.path) else
-        { return URL(fileURLWithPath: "")}
-        return url
+
+    var apiAdress: String {
+            return "https://rickandmortyapi.com/api"
     }
+
+    var url: URL {
+
+        guard let url = URL(string: self.path) else { return URL(fileURLWithPath: "https://rickandmortyapi.com/api")}
+        return url
+
+    }
+
     var path: String {
+
         switch self {
+
         case .characters:
             return self.apiAdress + "/character"
         case .location:
@@ -30,7 +39,5 @@ extension RickAndMortyAPI: EndPointType {
             return self.apiAdress + "/episodes"
         }
     }
-    var apiAdress: String {
-            return "https://rickandmortyapi.com/api/"
-    }
+
 }

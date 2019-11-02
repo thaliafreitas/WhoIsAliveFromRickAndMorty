@@ -22,7 +22,7 @@ class Request<T: EndPointType>: NetworkProtocol {
         let session = URLSession.shared
         var request = URLRequest(url: endPoint.url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 30.0)
         request.httpMethod = "GET"
-        self.task = session.dataTask(with: request, completionHandler: { (data, response, error) in
+        self.task = session.dataTask(with: request, completionHandler: { (data, _, error) in
                 guard let responseData = data, error == nil else {
                     if let unwrappedError = error {
                          print("Request Error:", unwrappedError.localizedDescription)
