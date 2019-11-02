@@ -31,7 +31,7 @@ class CoreDataManager {
         return persistentContainer.viewContext
     }
 
-    func saveCharacter(withName name: String = "", withStatus status: String  = "", withSpecies species: String = "", withType type: String = "", withGender gender: String = "", withOrigin origin: String, withImage image: String, withEpisode episode: String, andCreated created: String = "") {
+    func saveCharacter(withName name: String = "", withStatus status: String  = "", withSpecies species: String = "", withType type: String = "", withGender gender: String = "", withImage image: URL, withEpisode episode: String, andCreated created: String = "") {
 
         let context = getContext()
         let character = Character(context: context)
@@ -42,9 +42,7 @@ class CoreDataManager {
         character.type = type
         character.episode = episode
         character.gender = gender
-        character.origin = origin
         character.image = image
-        character.episode = episode
         character.created = created
 
         do {
@@ -74,6 +72,7 @@ class CoreDataManager {
         if context.hasChanges {
             do {
                 try context.save()
+                print("Context Saved")
             } catch {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")

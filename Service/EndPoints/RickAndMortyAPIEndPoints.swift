@@ -22,8 +22,7 @@ extension RickAndMortyAPI: EndPointType {
 
     var url: URL {
 
-        guard let url = URL(string: self.path) else
-        { return URL(fileURLWithPath: "https://rickandmortyapi.com/api")}
+        guard let url = URL(string: self.path) else { return URL(fileURLWithPath: "https://rickandmortyapi.com/api")}
         return url
 
     }

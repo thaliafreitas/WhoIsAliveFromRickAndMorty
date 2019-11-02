@@ -11,7 +11,7 @@ import UIKit
 
 class CustomCell: UICollectionViewCell {
 
-    fileprivate let imageCell: UIImageView = {
+    lazy var characterImage: UIImageView = {
         var image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleToFill
@@ -27,7 +27,7 @@ class CustomCell: UICollectionViewCell {
         textView.adjustsFontForContentSizeCategory = true
         textView.isEditable = false
         textView.isSelectable = false
-        textView.textColor = .black
+        textView.textColor = .white
         textView.textAlignment = .justified
         textView.backgroundColor = .black
         textView.layer.cornerRadius = 12
@@ -48,9 +48,9 @@ class CustomCell: UICollectionViewCell {
 extension CustomCell: ViewCode {
 
     func setupConstraints() {
-        imageCell.heightAnchor.constraint(equalToConstant: contentView.frame.height).isActive = true
-        imageCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
-        imageCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
+        characterImage.heightAnchor.constraint(equalToConstant: contentView.frame.height).isActive = true
+        characterImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
+        characterImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
         characterName.heightAnchor.constraint(equalToConstant: 50).isActive = true
         characterName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
         characterName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
@@ -58,11 +58,27 @@ extension CustomCell: ViewCode {
     }
 
     func buildViewHierarchy() {
-        contentView.addSubview(imageCell)
+        contentView.addSubview(characterImage)
         contentView.addSubview(characterName)
     }
 
     func setupAdditionalConfiguration() {
-        return
+//        let request = Request<RickAndMortyAPI>()
+//        request.peform(
     }
 }
+
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
+}
+
