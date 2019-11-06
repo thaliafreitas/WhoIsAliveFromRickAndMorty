@@ -35,7 +35,6 @@ class CoreDataManager {
 
         let context = getContext()
         let character = Character(context: context)
-        _ = fetchCharacters()
 
         character.name = name
         character.status = status
@@ -54,13 +53,14 @@ class CoreDataManager {
         }
     }
 
-    func fetchCharacters() {
+    func fetchCharacters() -> [Character] {
         let context = getContext()
         let charactersFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Character")
 
         do {
-            guard let fetchedCharacters = try context.fetch(charactersFetch) as? [Character] else { return }
-            self.characters = fetchedCharacters
+            guard let fetchedCharacters = try context.fetch(charactersFetch) as? [Character] else { return [] }
+
+            return fetchedCharacters
 
         } catch {
             fatalError("Failed to fetch character: \(error)")
@@ -84,7 +84,7 @@ class CoreDataManager {
 
     func resetCoreData() {
         let context = getContext()
-        let charactersFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Movie")
+        let charactersFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Character")
 
         do {
             guard let fetchedCharacters = try context.fetch(charactersFetch) as? [Character] else { return }
