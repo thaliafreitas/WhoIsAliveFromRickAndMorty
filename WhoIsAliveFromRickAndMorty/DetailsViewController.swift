@@ -87,7 +87,7 @@ class DetailsViewController: UIViewController {
         characterCreated.text = character.created
         characterName.text = character.name
         favButton.setImage(UIImage(named: "heart-icon-selected"), for: .selected)
- 
+
         CoreDataManager.sharedInstance.saveCharacter(withName: character.name,
                                                      withImage: character.image,
                                                      withEpisode: character.created)
