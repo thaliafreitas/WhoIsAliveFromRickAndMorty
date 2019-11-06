@@ -10,104 +10,132 @@ import UIKit
 
 class DetailsViewController: UIViewController {
     let store = APIManager.sharedInstance
+    var character: Result?
+    var favorites: [Result] = []
 
-    lazy var characterName: UITextView = {
-        let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.adjustsFontForContentSizeCategory = true
-        textView.isEditable = false
-        textView.isSelectable = false
-        textView.textColor = .white
-        textView.textAlignment = .justified
-        textView.backgroundColor = .black
-        textView.layer.cornerRadius = 12
-        return textView
+    lazy var characterName: UILabel = {
+        let textLabel = UILabel()
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        textLabel.adjustsFontForContentSizeCategory = true
+        textLabel.textColor = .textColor
+        textLabel.textAlignment = .justified
+        textLabel.layer.cornerRadius = 12
+        return textLabel
     }()
 
-    lazy var characterGender: UITextView = {
-        let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.adjustsFontForContentSizeCategory = true
-        textView.isEditable = false
-        textView.isSelectable = false
-        textView.textColor = .white
-        textView.textAlignment = .justified
-        textView.backgroundColor = .black
-        textView.layer.cornerRadius = 12
-        return textView
+    lazy var favButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "heart"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleFavTap(_:)), for: .touchUpInside)
+        button.tintColor = .blue
+        return button
     }()
 
-    lazy var characterSpecie: UITextView = {
-        let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.adjustsFontForContentSizeCategory = true
-        textView.isEditable = false
-        textView.isSelectable = false
-        textView.textColor = .white
-        textView.textAlignment = .justified
-        textView.backgroundColor = .black
-        textView.layer.cornerRadius = 12
-        return textView
-    }()
-
-    lazy var characterCreated: UITextView = {
-        let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.adjustsFontForContentSizeCategory = true
-        textView.isEditable = false
-        textView.isSelectable = false
-        textView.textColor = .white
-        textView.textAlignment = .justified
-        textView.backgroundColor = .black
-        textView.layer.cornerRadius = 12
-        return textView
-    }()
-
-    lazy var characterEpisode: UITextView = {
-        let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.adjustsFontForContentSizeCategory = true
-        textView.isEditable = false
-        textView.isSelectable = false
-        textView.textColor = .white
-        textView.textAlignment = .justified
-        textView.backgroundColor = .black
-        textView.layer.cornerRadius = 12
-        return textView
-    }()
-
-//    lazy var scrollCollectionDetail: UIScrollView {
-//
-//    }()
-
-    fileprivate let characterImage: UIImageView = {
+    lazy var characterImage: UIImageView = {
         var image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleToFill
         image.clipsToBounds = true
         image.layer.cornerRadius = 12
-        image.backgroundColor = .blue
         return image
     }()
 
+    lazy var characterGender: UILabel = {
+        let textLabel = UILabel()
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        textLabel.adjustsFontForContentSizeCategory = true
+        textLabel.textColor = .textColor
+        textLabel.textAlignment = .justified
+        textLabel.layer.cornerRadius = 12
+        return textLabel
+    }()
+
+    lazy var characterSpecie: UILabel = {
+        let textLabel = UILabel()
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        textLabel.adjustsFontForContentSizeCategory = true
+        textLabel.textColor = .textColor
+        textLabel.textAlignment = .justified
+        textLabel.layer.cornerRadius = 12
+        return textLabel
+    }()
+
+    lazy var characterCreated: UILabel = {
+        let textLabel = UILabel()
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        textLabel.adjustsFontForContentSizeCategory = true
+        textLabel.textColor = .textColor
+        textLabel.textAlignment = .justified
+        textLabel.layer.cornerRadius = 12
+        return textLabel
+    }()
+
+    lazy var characterEpisode: UILabel = {
+        let textLabel = UILabel()
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        textLabel.adjustsFontForContentSizeCategory = true
+        textLabel.textColor = .textColor
+        textLabel.textAlignment = .justified
+        textLabel.layer.cornerRadius = 12
+        return textLabel
+    }()
+
+    @objc func handleFavTap(_ sender: UITapGestureRecognizer? = nil) {
+        guard let character = self.character else {return}
+        characterImage.load(url: character.image)
+        characterCreated.text = character.created
+        characterName.text = character.name
+        favorites.append(character)
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .backgroundColor
+        guard let character = self.character else {return}
+        characterImage.load(url: character.image)
+        characterCreated.text = character.created
+        characterName.text = character.name
+        characterGender.text = character.gender.rawValue
+        characterSpecie.text = character.species.rawValue
+        setupView()
+        store.saveCharacter { (results: [Result]) in
+            self.store.characterDTO = results
+        }
     }
 
 }
 
 extension DetailsViewController: ViewCode {
-    func buildViewHierarchy() {
-        return
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+        characterImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+        characterImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+        characterImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+        characterImage.heightAnchor.constraint(equalToConstant: 300),
+        characterName.topAnchor.constraint(equalTo: characterImage.bottomAnchor, constant: 8),
+        characterName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+        characterName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+        characterGender.topAnchor.constraint(equalTo: characterName.bottomAnchor, constant: 8),
+        characterGender.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+        characterGender.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+        characterSpecie.topAnchor.constraint(equalTo: characterGender.bottomAnchor, constant: 8),
+        characterSpecie.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+        characterSpecie.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8)
+        ])
     }
 
-    func setupConstraints() {
-        return
+    func buildViewHierarchy() {
+        view.addSubview(characterName)
+        view.addSubview(characterImage)
+        view.addSubview(characterGender)
+        view.addSubview(characterSpecie)
+        view.addSubview(favButton)
     }
 
     func setupAdditionalConfiguration() {
         return
     }
 }
+
