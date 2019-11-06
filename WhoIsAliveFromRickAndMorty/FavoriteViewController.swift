@@ -12,6 +12,8 @@ class FavoriteViewController: UIViewController {
     let store = APIManager.sharedInstance
     var favCharacters: [Character] = []
     let coreDataManager = CoreDataManager.sharedInstance
+    var images = [UIImage]()
+
     fileprivate let tableView: UITableView = {
         let tableViewCell = UITableView(frame: .zero, style: .plain)
         tableViewCell.translatesAutoresizingMaskIntoConstraints = false
