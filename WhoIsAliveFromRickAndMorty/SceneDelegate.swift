@@ -22,11 +22,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let favoriteViewController = FavoriteViewController()
             let homeNavigationViewController = UINavigationController(rootViewController: homeViewController)
             let favoriteNavigationViewController = UINavigationController(rootViewController: favoriteViewController)
-            tabBar.viewControllers = [homeNavigationViewController, favoriteViewController]
-            homeNavigationViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 2)
+            tabBar.viewControllers = [homeNavigationViewController, favoriteNavigationViewController]
+            homeNavigationViewController.tabBarItem = UITabBarItem(title: "Characters",
+                                                                   image: UIImage(named: "cartoon"),
+                                                                   tag: 1)
+            favoriteNavigationViewController.tabBarItem = UITabBarItem(title: "Favorites",
+                                                                       image: UIImage(named: "heart"),
+                                                                       tag: 1)
             window.rootViewController = tabBar
             window.makeKeyAndVisible()
                 }
+        CoreDataManager.sharedInstance.fetchCharacters()
         window?.windowScene = windowScene
     }
 
