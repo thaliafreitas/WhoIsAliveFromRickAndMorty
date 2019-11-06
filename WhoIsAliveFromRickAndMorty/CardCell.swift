@@ -9,15 +9,14 @@
 import Foundation
 import UIKit
 
-class CustomCell: UICollectionViewCell {
+class CardCell: UITableViewCell {
 
     lazy var characterImage: UIImageView = {
         var image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleToFill
+        image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.layer.cornerRadius = 12
-        image.backgroundColor = .blue
         return image
     }()
 
@@ -27,16 +26,16 @@ class CustomCell: UICollectionViewCell {
         textView.adjustsFontForContentSizeCategory = true
         textView.isEditable = false
         textView.isSelectable = false
-        textView.textColor = .white
+        textView.textColor = .textColor
         textView.textAlignment = .justified
-        textView.backgroundColor = .black
         textView.layer.cornerRadius = 12
         return textView
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
+        self.selectionStyle = .none
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -45,16 +44,20 @@ class CustomCell: UICollectionViewCell {
 
 }
 
-extension CustomCell: ViewCode {
+extension CardCell: ViewCode {
 
     func setupConstraints() {
-        characterImage.heightAnchor.constraint(equalToConstant: contentView.frame.height).isActive = true
-        characterImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
-        characterImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
-        characterName.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        characterName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
-        characterName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
-        characterName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+            NSLayoutConstraint.activate([
+                characterImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
+                characterImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+                characterImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+                characterImage.heightAnchor.constraint(equalToConstant: 300),
+                characterName.heightAnchor.constraint(equalToConstant: 30),
+                characterName.topAnchor.constraint(equalTo: characterImage.bottomAnchor, constant: -16),
+                characterName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+                characterName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+                characterName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+                ])
     }
 
     func buildViewHierarchy() {
@@ -63,8 +66,6 @@ extension CustomCell: ViewCode {
     }
 
     func setupAdditionalConfiguration() {
-//        let request = Request<RickAndMortyAPI>()
-//        request.peform(
     }
 }
 
