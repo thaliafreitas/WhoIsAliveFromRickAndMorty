@@ -86,7 +86,9 @@ class DetailsViewController: UIViewController {
         characterImage.load(url: character.image)
         characterCreated.text = character.created
         characterName.text = character.name
-        favorites.append(character)
+        CoreDataManager.sharedInstance.saveCharacter(withName: character.name,
+                                                     withImage: character.image,
+                                                     withEpisode: character.created)
 
     }
 
@@ -98,9 +100,9 @@ class DetailsViewController: UIViewController {
         characterCreated.text = character.created
         characterName.text = character.name
         characterGender.text = character.gender.rawValue
-        characterSpecie.text = character.species.rawValue
+        characterSpecie.text = character.species
         setupView()
-        store.saveCharacter { (results: [Result]) in
+        store.loadCharacter { (results: [Result]) in
             self.store.characterDTO = results
         }
     }
@@ -122,7 +124,8 @@ extension DetailsViewController: ViewCode {
         characterGender.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
         characterSpecie.topAnchor.constraint(equalTo: characterGender.bottomAnchor, constant: 8),
         characterSpecie.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
-        characterSpecie.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8)
+        characterSpecie.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+        favButton.topAnchor.constraint(equalTo: characterSpecie.bottomAnchor, constant: 16)
         ])
     }
 

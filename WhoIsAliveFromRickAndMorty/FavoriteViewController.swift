@@ -10,8 +10,8 @@ import UIKit
 
 class FavoriteViewController: UIViewController {
     let store = APIManager.sharedInstance
-    var favorites: [Character] = []
-
+    var favCharacters: [Character] = []
+    let coreDataManager = CoreDataManager.sharedInstance
     fileprivate let tableView: UITableView = {
         let tableViewCell = UITableView(frame: .zero, style: .plain)
         tableViewCell.translatesAutoresizingMaskIntoConstraints = false
@@ -27,21 +27,28 @@ class FavoriteViewController: UIViewController {
         setupView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        favCharacters = coreDataManager.fetchCharacters()
+        tableView.reloadData()
+    }
+
 }
 
 extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return favorites.count
+        return favCharacters.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        if let customCell = cell as? CardCell {
-            let character = store.characterDTO[indexPath.row]
-            customCell.characterName.text = character.name
-            customCell.characterImage.load(url: character.image)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CardCell
+            let character = favCharacters[indexPath.row]
+        cell?.characterName.text = character.name
+
+        if let image = character.image {
+            cell?.characterImage.load(url: image)
         }
-        return cell
+
+        return cell ?? UITableViewCell()
     }
 
 }

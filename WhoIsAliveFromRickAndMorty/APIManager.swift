@@ -15,10 +15,22 @@ class APIManager {
 
     var characterDTO: [Result] = []
 
-    func saveCharacter (completion: @escaping ([Result]) -> Void) {
+    func loadCharacter (completion: @escaping ([Result]) -> Void) {
 
         let request = Request<RickAndMortyAPI>()
         request.perform(RickAndMortyAPI.characters) { (character: Welcome?, _: Errors?) -> (Void) in
+            guard let characters = character else { return }
+            completion(characters.results)
+
+        }
+
+    }
+
+    func filterCharacter (withValue: String, completion: @escaping ([Result]) -> Void) {
+
+        let request = Request<RickAndMortyAPI>()
+        request.perform(RickAndMortyAPI.characters,
+                        queryItem: ["name": withValue]) { (character: Welcome?, _: Errors?) -> (Void) in
             guard let characters = character else { return }
             completion(characters.results)
 

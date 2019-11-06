@@ -11,8 +11,8 @@ import Foundation
 
 class HomeViewController: UIViewController {
     let store = APIManager.sharedInstance
-    private var filteredCharacters = [Character]()
-    private var characters = [Character]()
+    private var filteredCharacters = [Result?]()
+    private var characters = [Result]()
 
     fileprivate let tableView: UITableView = {
         let tableViewCell = UITableView(frame: .zero, style: .plain)
@@ -44,7 +44,8 @@ class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         setupView()
-        store.saveCharacter { (results: [Result]) in
+
+        store.loadCharacter { (results: [Result]) in
             self.store.characterDTO = results
             self.tableView.reloadData()
         }
@@ -67,13 +68,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             customCell.characterName.text = character.name
             customCell.characterImage.load(url: character.image)
         }
-//
-//        let character: Character
-//        if isFiltering {
-//            character = filteredCharacters[indexPath.row]
-//        } else {
-//            character = characters[indexPath.row]
-//        }
         return cell
     }
 
@@ -129,12 +123,10 @@ extension HomeViewController: UISearchResultsUpdating {
     }
 
     private func filterContent(for searchText: String) {
-        filteredCharacters = characters.filter({ (character) -> Bool in
-            guard let characterName = character.name else { return false }
-            return characterName.lowercased().contains(searchText.lowercased())
-        })
-
-       tableView.reloadData()
+        store.filterCharacter(withValue: searchText) { (results: [Result]) in
+            self.store.characterDTO = results
+            self.tableView.reloadData()
+        }
     }
 
 }

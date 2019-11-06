@@ -32,7 +32,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.rootViewController = tabBar
             window.makeKeyAndVisible()
                 }
-        CoreDataManager.sharedInstance.fetchCharacters()
         window?.windowScene = windowScene
     }
 
