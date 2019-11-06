@@ -9,61 +9,53 @@
 import UIKit
 
 class FavoriteViewController: UIViewController {
+    let store = APIManager.sharedInstance
+    var favorites: [Character] = []
 
-    fileprivate let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        let collectionViewCell = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionViewCell.translatesAutoresizingMaskIntoConstraints = false
-        collectionViewCell.register(CustomCell.self, forCellWithReuseIdentifier: "cell")
-        collectionViewCell.backgroundColor = .green
-        return collectionViewCell
+    fileprivate let tableView: UITableView = {
+        let tableViewCell = UITableView(frame: .zero, style: .plain)
+        tableViewCell.translatesAutoresizingMaskIntoConstraints = false
+        tableViewCell.register(CardCell.self, forCellReuseIdentifier: "cell")
+        tableViewCell.backgroundColor = .backgroundColor
+        return tableViewCell
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
         setupView()
-
-        // Do any additional setup after loading the view.
     }
 
 }
 
-extension FavoriteViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return favorites.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? CustomCell
-            else { return UICollectionViewCell()}
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        if let customCell = cell as? CardCell {
+            let character = store.characterDTO[indexPath.row]
+            customCell.characterName.text = character.name
+            customCell.characterImage.load(url: character.image)
+        }
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let collectionViewSize = collectionView.frame.size.width
-        return CGSize(width: collectionViewSize, height: collectionViewSize / 2)
-
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? CustomCell else { return }
-
-    }
 }
 
 extension FavoriteViewController: ViewCode {
     func setupConstraints() {
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: view.frame.height).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        tableView.heightAnchor.constraint(equalToConstant: view.frame.height).isActive = true
     }
 
     func buildViewHierarchy() {
-        view.addSubview(collectionView)
+        view.addSubview(tableView)
     }
 
     func setupAdditionalConfiguration() {

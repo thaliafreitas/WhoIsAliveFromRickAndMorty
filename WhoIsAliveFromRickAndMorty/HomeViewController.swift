@@ -11,70 +11,100 @@ import Foundation
 
 class HomeViewController: UIViewController {
     let store = APIManager.sharedInstance
+    private var filteredCharacters = [Character]()
+    private var characters = [Character]()
 
-    fileprivate let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        let collectionViewCell = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionViewCell.translatesAutoresizingMaskIntoConstraints = false
-        collectionViewCell.register(CustomCell.self, forCellWithReuseIdentifier: "cell")
-        collectionViewCell.backgroundColor = .green
-        return collectionViewCell
+    fileprivate let tableView: UITableView = {
+        let tableViewCell = UITableView(frame: .zero, style: .plain)
+        tableViewCell.translatesAutoresizingMaskIntoConstraints = false
+        tableViewCell.register(CardCell.self, forCellReuseIdentifier: "cell")
+        tableViewCell.backgroundColor = .backgroundColor
+        return tableViewCell
     }()
+
+    lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Characters"
+        definesPresentationContext = true
+        return searchController
+    }()
+
+    private var searchBarIsEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+
+    private var isFiltering: Bool {
+           return searchController.isActive && !searchBarIsEmpty
+       }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
         setupView()
         store.saveCharacter { (results: [Result]) in
             self.store.characterDTO = results
-            self.collectionView.reloadData()
+            self.tableView.reloadData()
         }
+        self.searchController.searchBar.sizeToFit()
+        navigationItem.searchController = searchController
+
     }
 
-//    func showDetailsCollectionView(of Character: UIImage) {
-//
-//    }
 }
 
-extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return store.characterDTO.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        if let customCell = cell as? CustomCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        if let customCell = cell as? CardCell {
             let character = store.characterDTO[indexPath.row]
             customCell.characterName.text = character.name
             customCell.characterImage.load(url: character.image)
         }
+//
+//        let character: Character
+//        if isFiltering {
+//            character = filteredCharacters[indexPath.row]
+//        } else {
+//            character = characters[indexPath.row]
+//        }
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let collectionViewSize = collectionView.frame.size.width
-        return CGSize(width: collectionViewSize, height: collectionViewSize / 2)
-
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UITableViewHeaderFooterView(frame: CGRect(x: 0, y: 0, width: 30, height: 120))
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .backgroundColor
+        headerView.backgroundView = backgroundView
+        return headerView
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        if let customCell = cell as? CustomCell {
-
-            let character = store.characterDTO[indexPath.row]
-            customCell.characterName.text = character.name
-            customCell.characterImage.load(url: character.image)
-
-        }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexSelect = indexPath.row
+        let detailsVC = DetailsViewController()
+        detailsVC.character = store.characterDTO[indexSelect]
+        self.navigationController?.pushViewController(detailsVC, animated: true)
+    }
+
 }
 
 extension HomeViewController: ViewCode {
     func buildViewHierarchy() {
-        view.addSubview(collectionView)
+        view.addSubview(tableView)
     }
 
     func setupAdditionalConfiguration() {
@@ -82,13 +112,29 @@ extension HomeViewController: ViewCode {
     }
 
     func setupConstraints() {
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: view.frame.height).isActive = true
+        tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        tableView.heightAnchor.constraint(equalToConstant: view.frame.height).isActive = true
     }
 
 }
 
+// MARK: - UISearchControllerDelegate
+extension HomeViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            filterContent(for: searchText)
+        }
+    }
 
+    private func filterContent(for searchText: String) {
+        filteredCharacters = characters.filter({ (character) -> Bool in
+            guard let characterName = character.name else { return false }
+            return characterName.lowercased().contains(searchText.lowercased())
+        })
 
+       tableView.reloadData()
+    }
+
+}

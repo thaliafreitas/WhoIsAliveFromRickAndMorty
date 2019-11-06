@@ -14,15 +14,15 @@
 		573259B62364944800AECB85 /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573259B52364944800AECB85 /* NetworkProtocol.swift */; };
 		573259B82364995A00AECB85 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573259B72364995A00AECB85 /* Request.swift */; };
 		573259BA2364CE4500AECB85 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573259B92364CE4500AECB85 /* HomeViewController.swift */; };
-		573259C02364F4F500AECB85 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573259BF2364F4F500AECB85 /* CustomCell.swift */; };
+		573259C02364F4F500AECB85 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573259BF2364F4F500AECB85 /* CardCell.swift */; };
 		573259C423668A1A00AECB85 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573259C323668A1A00AECB85 /* APIManager.swift */; };
 		573259D6236937F500AECB85 /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573259D5236937F500AECB85 /* ViewCode.swift */; };
 		57722183236A018800708D86 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57722182236A018800708D86 /* CoreDataManager.swift */; };
 		57722185236A226A00708D86 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57722184236A226A00708D86 /* FavoriteViewController.swift */; };
 		57722187236BD4C200708D86 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57722186236BD4C200708D86 /* DetailsViewController.swift */; };
+		5772218C23727CAF00708D86 /* UIolor+customColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772218B23727CAE00708D86 /* UIolor+customColors.swift */; };
 		5778DDF2236249EF00674A57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778DDF1236249EF00674A57 /* AppDelegate.swift */; };
 		5778DDF4236249EF00674A57 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778DDF3236249EF00674A57 /* SceneDelegate.swift */; };
-		5778DDF9236249EF00674A57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5778DDF7236249EF00674A57 /* Main.storyboard */; };
 		5778DDFC236249EF00674A57 /* WhoIsAliveFromRickAndMorty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5778DDFA236249EF00674A57 /* WhoIsAliveFromRickAndMorty.xcdatamodeld */; };
 		5778DDFE236249F200674A57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5778DDFD236249F200674A57 /* Assets.xcassets */; };
 		5778DE01236249F200674A57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5778DDFF236249F200674A57 /* LaunchScreen.storyboard */; };
@@ -55,16 +55,16 @@
 		573259B52364944800AECB85 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
 		573259B72364995A00AECB85 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		573259B92364CE4500AECB85 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		573259BF2364F4F500AECB85 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		573259BF2364F4F500AECB85 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		573259C323668A1A00AECB85 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		573259D5236937F500AECB85 /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
 		57722182236A018800708D86 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		57722184236A226A00708D86 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		57722186236BD4C200708D86 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		5772218B23727CAE00708D86 /* UIolor+customColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIolor+customColors.swift"; sourceTree = "<group>"; };
 		5778DDEE236249EF00674A57 /* WhoIsAliveFromRickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhoIsAliveFromRickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5778DDF1236249EF00674A57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5778DDF3236249EF00674A57 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5778DDF8236249EF00674A57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5778DDFB236249EF00674A57 /* WhoIsAliveFromRickAndMorty.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WhoIsAliveFromRickAndMorty.xcdatamodel; sourceTree = "<group>"; };
 		5778DDFD236249F200674A57 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5778DE00236249F200674A57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -157,13 +157,13 @@
 				5778DDF1236249EF00674A57 /* AppDelegate.swift */,
 				5778DDF3236249EF00674A57 /* SceneDelegate.swift */,
 				573259D5236937F500AECB85 /* ViewCode.swift */,
-				5778DDF7236249EF00674A57 /* Main.storyboard */,
 				573259B92364CE4500AECB85 /* HomeViewController.swift */,
 				57722184236A226A00708D86 /* FavoriteViewController.swift */,
 				57722186236BD4C200708D86 /* DetailsViewController.swift */,
+				5772218B23727CAE00708D86 /* UIolor+customColors.swift */,
 				57722182236A018800708D86 /* CoreDataManager.swift */,
 				573259C323668A1A00AECB85 /* APIManager.swift */,
-				573259BF2364F4F500AECB85 /* CustomCell.swift */,
+				573259BF2364F4F500AECB85 /* CardCell.swift */,
 				5778DDFD236249F200674A57 /* Assets.xcassets */,
 				5778DDFF236249F200674A57 /* LaunchScreen.storyboard */,
 				5778DE02236249F200674A57 /* Info.plist */,
@@ -306,7 +306,6 @@
 			files = (
 				5778DE01236249F200674A57 /* LaunchScreen.storyboard in Resources */,
 				5778DDFE236249F200674A57 /* Assets.xcassets in Resources */,
-				5778DDF9236249EF00674A57 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,10 +362,11 @@
 				573259B62364944800AECB85 /* NetworkProtocol.swift in Sources */,
 				573259B0236367CE00AECB85 /* Errors.swift in Sources */,
 				57722187236BD4C200708D86 /* DetailsViewController.swift in Sources */,
+				5772218C23727CAF00708D86 /* UIolor+customColors.swift in Sources */,
 				573259B82364995A00AECB85 /* Request.swift in Sources */,
 				5778DDF4236249EF00674A57 /* SceneDelegate.swift in Sources */,
 				573259B22363694400AECB85 /* RickAndMortyAPIEndPoints.swift in Sources */,
-				573259C02364F4F500AECB85 /* CustomCell.swift in Sources */,
+				573259C02364F4F500AECB85 /* CardCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,14 +402,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5778DDF7236249EF00674A57 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5778DDF8236249EF00674A57 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5778DDFF236249F200674A57 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -542,6 +534,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7ZRHSKUH65;
 				INFOPLIST_FILE = WhoIsAliveFromRickAndMorty/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -560,6 +553,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7ZRHSKUH65;
 				INFOPLIST_FILE = WhoIsAliveFromRickAndMorty/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

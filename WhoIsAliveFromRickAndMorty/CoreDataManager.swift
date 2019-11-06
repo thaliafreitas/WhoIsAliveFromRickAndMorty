@@ -35,6 +35,7 @@ class CoreDataManager {
 
         let context = getContext()
         let character = Character(context: context)
+        _ = fetchCharacters()
 
         character.name = name
         character.status = status
@@ -47,6 +48,7 @@ class CoreDataManager {
 
         do {
             try context.save()
+            print("Context Saved")
         } catch {
             fatalError("Failure to get context\(error)")
         }
