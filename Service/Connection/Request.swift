@@ -29,7 +29,6 @@ class Request<T: EndPointType>: NetworkProtocol {
             }
         }
         guard let url = component?.url else { return }
-        print("URL: \(url)")
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 30.0)
         request.httpMethod = "GET"
         self.task = session.dataTask(with: request, completionHandler: { (data, _, error) in

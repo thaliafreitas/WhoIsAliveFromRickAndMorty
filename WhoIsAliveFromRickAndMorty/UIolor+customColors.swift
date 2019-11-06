@@ -31,4 +31,8 @@ extension UIColor {
         return UIColor(named: "backgroundColor") ?? .white
     }
 
+    @nonobjc class var textLabelBackgroundColor: UIColor {
+        return UIColor(red: 168.0 / 255.0, green: 169.0 / 255.0, blue: 171.0 / 255.0, alpha: 1.0)
+    }
+
 }
