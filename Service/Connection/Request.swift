@@ -17,10 +17,20 @@ class Request<T: EndPointType>: NetworkProtocol {
     // MARK: Functions
     /** Perform contains implemention body of request, but it must to have Api keys and required IDs*/
 
-    func perform<U: Decodable>(_ endPoint: T, completion: @escaping (U?, Errors?) -> (Void)) {
+    func perform<U: Decodable>(_ endPoint: T, queryItem: [String: Any]? = nil, completion: @escaping (U?, Errors?) -> (Void)) {
 
         let session = URLSession.shared
-        var request = URLRequest(url: endPoint.url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 30.0)
+        var component = URLComponents(url: endPoint.url, resolvingAgainstBaseURL: false)
+        if let queryItem = queryItem {
+            component?.queryItems = []
+            for (key, value) in queryItem {
+                let item = URLQueryItem(name: key, value: "\(value)")
+                component?.queryItems?.append(item)
+            }
+        }
+        guard let url = component?.url else { return }
+        print("URL: \(url)")
+        var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 30.0)
         request.httpMethod = "GET"
         self.task = session.dataTask(with: request, completionHandler: { (data, _, error) in
                 guard let responseData = data, error == nil else {
