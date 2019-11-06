@@ -48,18 +48,21 @@ extension CardCell: ViewCode {
 
     func setupConstraints() {
         let charNameBottomConst = characterName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+
+        let imageHeight = characterImage.heightAnchor.constraint(equalToConstant: 300)
+
         charNameBottomConst.priority = .defaultLow
             NSLayoutConstraint.activate([
                 characterImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
                 characterImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
                 characterImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-                characterImage.heightAnchor.constraint(equalToConstant: 300),
+                imageHeight,
                 characterName.heightAnchor.constraint(equalToConstant: 30),
                 characterName.topAnchor.constraint(equalTo: characterImage.bottomAnchor, constant: -16),
                 characterName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
                 characterName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
                 charNameBottomConst
-                ])
+            ])
     }
 
     func buildViewHierarchy() {
