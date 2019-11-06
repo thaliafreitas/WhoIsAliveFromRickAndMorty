@@ -21,6 +21,7 @@
 		57722185236A226A00708D86 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57722184236A226A00708D86 /* FavoriteViewController.swift */; };
 		57722187236BD4C200708D86 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57722186236BD4C200708D86 /* DetailsViewController.swift */; };
 		5772218C23727CAF00708D86 /* UIolor+customColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772218B23727CAE00708D86 /* UIolor+customColors.swift */; };
+		5772218E237350B800708D86 /* heart-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5772218D237350B800708D86 /* heart-icon.png */; };
 		5778DDF2236249EF00674A57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778DDF1236249EF00674A57 /* AppDelegate.swift */; };
 		5778DDF4236249EF00674A57 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5778DDF3236249EF00674A57 /* SceneDelegate.swift */; };
 		5778DDFC236249EF00674A57 /* WhoIsAliveFromRickAndMorty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5778DDFA236249EF00674A57 /* WhoIsAliveFromRickAndMorty.xcdatamodeld */; };
@@ -62,6 +63,7 @@
 		57722184236A226A00708D86 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		57722186236BD4C200708D86 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		5772218B23727CAE00708D86 /* UIolor+customColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIolor+customColors.swift"; sourceTree = "<group>"; };
+		5772218D237350B800708D86 /* heart-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-icon.png"; sourceTree = "<group>"; };
 		5778DDEE236249EF00674A57 /* WhoIsAliveFromRickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhoIsAliveFromRickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5778DDF1236249EF00674A57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5778DDF3236249EF00674A57 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				573259C323668A1A00AECB85 /* APIManager.swift */,
 				573259BF2364F4F500AECB85 /* CardCell.swift */,
 				5778DDFD236249F200674A57 /* Assets.xcassets */,
+				5772218D237350B800708D86 /* heart-icon.png */,
 				5778DDFF236249F200674A57 /* LaunchScreen.storyboard */,
 				5778DE02236249F200674A57 /* Info.plist */,
 				5778DDFA236249EF00674A57 /* WhoIsAliveFromRickAndMorty.xcdatamodeld */,
@@ -305,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5778DE01236249F200674A57 /* LaunchScreen.storyboard in Resources */,
+				5772218E237350B800708D86 /* heart-icon.png in Resources */,
 				5778DDFE236249F200674A57 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -26,9 +26,9 @@ class CardCell: UITableViewCell {
         textLabel.adjustsFontForContentSizeCategory = true
         textLabel.textColor = .textColor
         textLabel.textAlignment = .justified
-        textLabel.backgroundColor = .darkGray
-        textLabel.font = textLabel.font.withSize(16)
-        textLabel.layer.cornerRadius = 12
+        textLabel.backgroundColor = .textLabelBackgroundColor
+        textLabel.font = textLabel.font.withSize(20)
+        textLabel.layer.cornerRadius = 24
         return textLabel
     }()
 
@@ -55,7 +55,7 @@ extension CardCell: ViewCode {
                 characterImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
                 characterImage.heightAnchor.constraint(equalToConstant: 300),
                 characterName.heightAnchor.constraint(equalToConstant: 30),
-                characterName.topAnchor.constraint(equalTo: characterImage.bottomAnchor, constant: -8),
+                characterName.topAnchor.constraint(equalTo: characterImage.bottomAnchor, constant: -16),
                 characterName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
                 characterName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
                 charNameBottomConst

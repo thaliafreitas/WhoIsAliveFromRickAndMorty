@@ -25,7 +25,7 @@ class DetailsViewController: UIViewController {
 
     lazy var favButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "heart"), for: .normal)
+        button.setImage(UIImage(named: "heart-icon-unselected"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleFavTap(_:)), for: .touchUpInside)
         button.tintColor = .blue
@@ -86,6 +86,8 @@ class DetailsViewController: UIViewController {
         characterImage.load(url: character.image)
         characterCreated.text = character.created
         characterName.text = character.name
+        favButton.setImage(UIImage(named: "heart-icon-selected"), for: .selected)
+ 
         CoreDataManager.sharedInstance.saveCharacter(withName: character.name,
                                                      withImage: character.image,
                                                      withEpisode: character.created)
@@ -125,7 +127,8 @@ extension DetailsViewController: ViewCode {
         characterSpecie.topAnchor.constraint(equalTo: characterGender.bottomAnchor, constant: 8),
         characterSpecie.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
         characterSpecie.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
-        favButton.topAnchor.constraint(equalTo: characterSpecie.bottomAnchor, constant: 16)
+        favButton.topAnchor.constraint(equalTo: characterSpecie.bottomAnchor, constant: 16),
+        favButton.trailingAnchor.constraint(equalTo: view.leadingAnchor, constant: 200)
         ])
     }
 
